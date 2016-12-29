@@ -5,6 +5,7 @@ var io = require('socket.io')(http);
 var clients = [];
 
 app.use(express.static('scripts'));
+app.set('port', (process.env.PORT || 5000));
 app.get('/', function(req, res){
   res.sendFile(__dirname+'/index.html');
 });
@@ -39,6 +40,6 @@ io.on('connection', function(socket){
 	});
 });
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
+http.listen(app.get('port'), function(){
+  console.log('Node app is running on port', app.get('port'));
 });
