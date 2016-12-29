@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.cButton { width: 20px; height: 20px; border: 1px solid #000000; margin: 1px 1px; border-radius: 2px;}
+.c1 { background: rgb(166, 170, 162); }
+.c2 { background: rgb(120, 123, 122); }
+.c3 { background: rgb(162, 155, 4); }
+.c4 { background: rgb(173, 76, 0); }
+.c5 { background: rgb(159, 85, 157); }
+.c6 { background: rgb(162, 13, 0); }
+.c7 { background: rgb(84, 20, 166); }
+.c8 { background: rgb(93, 47, 0); }
+.c9 { background: rgb(0, 86, 153); }
+.c10 { background: rgb(0, 149, 174); }
+.c11 { background: rgb(0, 95, 1); }
+.c12 { background: rgb(0, 0, 0); }
+
+.tButton { height: 30px; border: 1px solid #000000; margin: 1px 1px; border-radius: 2px;}
+
+#drawCanvas {border:1px solid #000000; margin: 2px 1px; cursor:crosshair;}
+
+</style>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="paper.js"></script>
+<script type="text/javascript" src="draw.js"></script>
+</head>
+<body>
+	<div id="colorButtons">
+		<button class="cButton c1" id="#a6aaa2" />
+		<button class="cButton c2" id="#787b7a" />
+		<button class="cButton c3" id="#a29b04" />
+		<button class="cButton c4" id="#ad4c00" />
+		<button class="cButton c5" id="#9f559d" />
+		<button class="cButton c6" id="#a20d00" />
+		<button class="cButton c7" id="#5414a6" />
+		<button class="cButton c8" id="#5d2f00" />
+		<button class="cButton c9" id="#005999" />
+		<button class="cButton c10" id="#0095ae" />
+		<button class="cButton c11" id="#005f01" />
+		<button class="cButton c12" id="#000000" />
+	</div>
+	<div id="toolButtons">
+		<button class="tButton t1" id="thin"> thin </button>
+		<button class="tButton t2" id="thick"> thick </button>
+		<button class="tButton t3" id="outline"> outlined </button>
+	</div>
+	<canvas id="drawCanvas" keepalive="true" height="240" width="320" imageSmoothingEnabled="false"></canvas>
+	<img style="display: none;" id="bg" src="/images/bg.png"></img>
+</body>
+</html>
