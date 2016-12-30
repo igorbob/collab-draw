@@ -39,7 +39,7 @@ io.on('connection', function(socket){
 	});
 
   socket.on('erase', function() {
-    socket.emit('erase');
+    io.sockets.emit('erase');
   })
 });
 
