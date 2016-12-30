@@ -17,8 +17,8 @@ window.onload = function() {
 	})
 	
     project.currentStyle.strokeCap = 'round';
+    project.currentStyle.strokeWidth = 3; // thin:2, outlined:3, thick:6
     currentColor = '#000000';
-    project.currentStyle.strokeWidth = 3;
 
 	var colorChooser = document.getElementById('colorButtons');
 	var toolChooser = document.getElementById('toolButtons');
@@ -41,11 +41,15 @@ window.onload = function() {
 			case 'outline':
 				project.currentStyle.strokeWidth = 3;  // 3 == outlined
 				break;
+			case 'erase':
+				socket.emit('erase');
+				break;
 			default:
 				console.log('defaulted in tool-switch');
 		}
 	}
 	
+	// curved-line tool
 	tool.onMouseDown = function(event) {
 		var width = project.currentStyle.strokeWidth;
 		startPath(event.point, currentColor, width, socket.id);
@@ -66,7 +70,7 @@ window.onload = function() {
 	}
 
 	function startPath(point, color, width, ID) {
-		if (width == 3) {
+		if (width == 3) {  // add outline
 			paths[ID+'o'] = new Path();
 			paths[ID+'o'].strokeColor = 'black';
 			if (color == '#000000') {
@@ -108,5 +112,9 @@ window.onload = function() {
 		point = new Point(data.point[1],data.point[2]);
 		endPath(point, data.ID);
 		view.draw();
+	})
+	socket.on('erase', function() {
+		var raster = new Raster('bg');
+		raster.position = view.center;
 	})
 }

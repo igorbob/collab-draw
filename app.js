@@ -11,24 +11,23 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
-  console.log("socket is ", socket.id);
+  console.log(socket.id + ' entered');
   clients.push(socket);
 	socket.on('disconnect', function(){
   	var index = clients.indexOf(socket);
     if (index != -1) {
       clients.splice(index, 1);
-      console.info('Client gone (id=' + socket.id + ').');
+      console.info(socket.id + ' left');
     }
 	});
 
-  if (socket.id != clients[0].id) {
-    //send img-req to first user
-    clients[0].emit('imageRequest');
-  }
+  // send img-req to first user
+  if (socket.id != clients[0].id) { clients[0].emit('imageRequest'); };
   socket.on('imageReady', function(data) {
     clients[clients.length - 1].emit('image', data);
-  } )
+  });
 
+  // broadcast drawing events:
 	socket.on('startPath', function(data) {
 		socket.broadcast.emit('startPath', data);
 	});
@@ -38,6 +37,10 @@ io.on('connection', function(socket){
 	socket.on('endPath', function(data) {
 		socket.broadcast.emit('endPath', data);
 	});
+
+  socket.on('erase', function() {
+    socket.emit('erase');
+  })
 });
 
 http.listen(app.get('port'), function(){
