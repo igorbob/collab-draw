@@ -26,7 +26,7 @@ window.onload = function() {
 	var saveButton = document.getElementById('save');
 	colorChooser.addEventListener('click', changeColor);
 	toolChooser.addEventListener('click', changeTool);
-	clearButton.addEventListener('click', socket.emit('clear'));
+	clearButton.addEventListener('click', clearImage);
 	saveButton.addEventListener('click', saveImage);
 	
 	function changeColor(event) {
@@ -50,11 +50,15 @@ window.onload = function() {
 		}
 	}
 
+	function clearImage(event){
+		socket.emit('clear');
+	}
+
 	function saveImage(event) {
 		var img = project.activeLayer.rasterize().toDataURL();
 		$.ajax({
 		    type: "POST",
-		    url: "https://mirapaxi.000webhostapp.com/upload.php",
+		    url: "http://cors.io/?https://mirapaxi.000webhostapp.com/upload.php",
 		    data: {image: img}
 		}).done(function( respond ) {
 		    console.log(respond);
