@@ -52,7 +52,13 @@ window.onload = function() {
 
 	function saveImage(event) {
 		var img = project.activeLayer.rasterize().toDataURL();
-		console.log('try to save image');
+		$.ajax({
+		    type: "POST",
+		    url: "upload.php",
+		    data: {image: img}
+		}).done(function( respond ) {
+		    console.log(respond);
+		});
 	}
 	
 	// curved-line tool
