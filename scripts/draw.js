@@ -22,7 +22,7 @@ window.onload = function() {
 
 	var colorChooser = document.getElementById('colorButtons');
 	var toolChooser = document.getElementById('toolButtons');
-	var saveButton = document.getElementByID('saveButton');
+	var saveButton = document.getElementById('saveButton');
 	colorChooser.addEventListener('click', changeColor);
 	toolChooser.addEventListener('click', changeTool);
 	saveButton.addEventListener('click', saveImage);
