@@ -22,9 +22,11 @@ window.onload = function() {
 
 	var colorChooser = document.getElementById('colorButtons');
 	var toolChooser = document.getElementById('toolButtons');
-	var saveButton = document.getElementById('saveButton');
+	var clearButton = document.getElementById('clear')
+	var saveButton = document.getElementById('save');
 	colorChooser.addEventListener('click', changeColor);
 	toolChooser.addEventListener('click', changeTool);
+	clearButton.addEventListener('click', socket.emit('clear'));
 	saveButton.addEventListener('click', saveImage);
 	
 	function changeColor(event) {
@@ -42,9 +44,6 @@ window.onload = function() {
 				break;
 			case 'outline':
 				project.currentStyle.strokeWidth = 3;  // 3 == outlined
-				break;
-			case 'erase':
-				socket.emit('erase');
 				break;
 			default:
 				console.log('defaulted in tool-switch');
@@ -120,7 +119,7 @@ window.onload = function() {
 		endPath(point, data.ID);
 		view.draw();
 	})
-	socket.on('erase', function() {
+	socket.on('clear', function() {
 		var raster = new Raster('bg');
 		raster.position = view.center;
 	})

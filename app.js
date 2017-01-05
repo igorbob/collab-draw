@@ -38,8 +38,8 @@ io.on('connection', function(socket){
 		socket.broadcast.emit('endPath', data);
 	});
 
-  socket.on('erase', function() {
-    io.sockets.emit('erase');
+  socket.on('clear', function() {
+    io.sockets.emit('clear');
   })
 });
 
