@@ -22,8 +22,10 @@ window.onload = function() {
 
 	var colorChooser = document.getElementById('colorButtons');
 	var toolChooser = document.getElementById('toolButtons');
+	var saveButton = document.getElementByID('saveButton');
 	colorChooser.addEventListener('click', changeColor);
 	toolChooser.addEventListener('click', changeTool);
+	saveButton.addEventListener('click', saveImage);
 	
 	function changeColor(event) {
 		console.log('change color to:', event.target.id);
@@ -47,6 +49,11 @@ window.onload = function() {
 			default:
 				console.log('defaulted in tool-switch');
 		}
+	}
+
+	function saveImage(event) {
+		var img = project.activeLayer.rasterize().toDataURL();
+		console.log('try to save image');
 	}
 	
 	// curved-line tool
