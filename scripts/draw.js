@@ -58,7 +58,7 @@ window.onload = function() {
 		var img = project.activeLayer.rasterize().toDataURL();
 		$.ajax({
 		    type: "POST",
-		    url: "http://cors.io/?https://mirapaxi.000webhostapp.com/upload.php",
+		    url: "https://mirapaxi.000webhostapp.com/upload.php",
 		    data: {image: img}
 		}).done(function( respond ) {
 		    console.log(respond);
