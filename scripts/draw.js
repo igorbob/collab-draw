@@ -5,12 +5,11 @@ window.onload = function() {
 	var tool = new Tool();
 	var paths = {};
 
-	//var mask = new Path.Rectangle(view.bounds);
+	var mask = new Path.Rectangle(view.bounds);
 	var bg = new Path.Rectangle(view.bounds);
 	bg.fillColor = "#787b7a";
-	//project.activeLayer.clipped = true;
-	project.activeLayer.strokeBounds = view.bounds;
-	//view.draw();
+	project.activeLayer.clipped = true;
+	view.draw();
 	
 	socket.on('imageRequest', function() {
 		var img = project.activeLayer.rasterize().toDataURL();
@@ -60,7 +59,8 @@ window.onload = function() {
 	}
 
 	function saveImage(event) {
-		var img = project.activeLayer.rasterize().toDataURL();
+		var raster = project.activeLayer.rasterize()
+		var img = raster.getSubRaster(view.bounds).toDataURL();
 		$.ajax({
 		    type: "POST",
 		    url: "https://mirapaxi.000webhostapp.com/upload.php",
