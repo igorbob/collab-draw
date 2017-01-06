@@ -5,11 +5,12 @@ window.onload = function() {
 	var tool = new Tool();
 	var paths = {};
 
-	var mask = new Path.Rectangle(view.bounds);
+	//var mask = new Path.Rectangle(view.bounds);
 	var bg = new Path.Rectangle(view.bounds);
 	bg.fillColor = "#787b7a";
-	project.activeLayer.clipped = true;
-	view.draw();
+	//project.activeLayer.clipped = true;
+	project.activeLayer.bounds = view.bounds;
+	//view.draw();
 	
 	socket.on('imageRequest', function() {
 		var img = project.activeLayer.rasterize().toDataURL();
