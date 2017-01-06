@@ -12,8 +12,7 @@ window.onload = function() {
 	view.draw();
 	
 	socket.on('imageRequest', function() {
-		var raster = project.activeLayer.rasterize()
-		var img = raster.getSubRaster(view.bounds).toDataURL();
+		var img = project.activeLayer.rasterize().toDataURL();
 		socket.emit('imageReady', {image: img});
 	})
 	socket.on('image', function(data) {
@@ -60,8 +59,8 @@ window.onload = function() {
 	}
 
 	function saveImage(event) {
-		var raster = project.activeLayer.rasterize()
-		var img = raster.getSubRaster(view.bounds).toDataURL();
+		project.activeLayer.bounds = view.bounds;
+		var img = project.activeLayer.rasterize().toDataURL();
 		$.ajax({
 		    type: "POST",
 		    url: "https://mirapaxi.000webhostapp.com/upload.php",
