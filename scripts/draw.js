@@ -9,6 +9,7 @@ window.onload = function() {
 	var bg = new Path.Rectangle(view.bounds);
 	bg.fillColor = "#787b7a";
 	project.activeLayer.clipped = true;
+	view.draw();
 	
 	socket.on('imageRequest', function() {
 		var img = project.activeLayer.rasterize().toDataURL();
