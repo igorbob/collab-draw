@@ -9,6 +9,7 @@ window.onload = function() {
 	var mask = new Path.Rectangle(viewRect);
 	//var bg = new Path.Rectangle(viewRect);
 	//bg.fillColor = "#787b7a";
+	project.activeLayer.strokeBounds = viewRect;
 	project.activeLayer.clipped = true;
 	view.draw();
 	
