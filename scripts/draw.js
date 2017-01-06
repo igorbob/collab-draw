@@ -5,8 +5,10 @@ window.onload = function() {
 	var tool = new Tool();
 	var paths = {};
 
-	var raster = new Raster('bg');
-	raster.position = view.center;
+	var bg = new Path.Rectangle(view.bounds);
+	bg.fillColor = "red";
+	project.activeLayer.clipped = true;
+	
 	socket.on('imageRequest', function() {
 		var img = project.activeLayer.rasterize().toDataURL();
 		socket.emit('imageReady', {image: img});
@@ -130,7 +132,7 @@ window.onload = function() {
 		view.draw();
 	})
 	socket.on('clear', function() {
-		var raster = new Raster('bg');
-		raster.position = view.center;
+		var newbg = new Path.Rectangle(view.bounds);
+		newbg.fillColor = "red";
 	})
 }
