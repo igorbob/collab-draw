@@ -19,6 +19,7 @@ window.onload = function() {
 	socket.on('image', function(data) {
 		raster = new Raster(data.image);
 		raster.position = view.center;
+		view.draw();
 	})
 	
     project.currentStyle.strokeCap = 'round';
