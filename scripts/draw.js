@@ -9,7 +9,7 @@ window.onload = function() {
 	var bg = new Path.Rectangle(view.bounds);
 	bg.fillColor = "#787b7a";
 	//project.activeLayer.clipped = true;
-	project.activeLayer.bounds = view.bounds;
+	project.activeLayer.strokeBounds = view.bounds;
 	//view.draw();
 	
 	socket.on('imageRequest', function() {
