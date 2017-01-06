@@ -5,8 +5,9 @@ window.onload = function() {
 	var tool = new Tool();
 	var paths = {};
 
-	var mask = new Path.Rectangle(view.bounds);
-	var bg = new Path.Rectangle(view.bounds);
+	var viewRect = view.bounds;
+	var mask = new Path.Rectangle(viewRect);
+	var bg = new Path.Rectangle(viewRect);
 	bg.fillColor = "#787b7a";
 	project.activeLayer.clipped = true;
 	view.draw();
@@ -59,7 +60,7 @@ window.onload = function() {
 	}
 
 	function saveImage(event) {
-		project.activeLayer.bounds = view.bounds;
+		project.activeLayer.bounds = viewRect;
 		var img = project.activeLayer.rasterize().toDataURL();
 		$.ajax({
 		    type: "POST",
