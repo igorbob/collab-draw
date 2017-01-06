@@ -5,8 +5,9 @@ window.onload = function() {
 	var tool = new Tool();
 	var paths = {};
 
+	var mask = new Path.Rectangle(view.bounds);
 	var bg = new Path.Rectangle(view.bounds);
-	bg.fillColor = "red";
+	bg.fillColor = "#787b7a";
 	project.activeLayer.clipped = true;
 	
 	socket.on('imageRequest', function() {
@@ -132,7 +133,7 @@ window.onload = function() {
 		view.draw();
 	})
 	socket.on('clear', function() {
-		var newbg = new Path.Rectangle(view.bounds);
-		newbg.fillColor = "red";
+		var bg = new Path.Rectangle(view.bounds);
+		bg.fillColor = "#787b7a";
 	})
 }
