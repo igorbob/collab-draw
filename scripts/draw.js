@@ -12,7 +12,8 @@ window.onload = function() {
 	view.draw();
 	
 	socket.on('imageRequest', function() {
-		var img = project.activeLayer.rasterize().toDataURL();
+		var raster = project.activeLayer.rasterize()
+		var img = raster.getSubRaster(view.bounds).toDataURL();
 		socket.emit('imageReady', {image: img});
 	})
 	socket.on('image', function(data) {
