@@ -7,8 +7,8 @@ window.onload = function() {
 
 	var viewRect = new Rectangle(0,0,320,240);
 	var mask = new Path.Rectangle(viewRect);
-	var bg = new Path.Rectangle(viewRect);
-	bg.fillColor = "#787b7a";
+	//var bg = new Path.Rectangle(viewRect);
+	//bg.fillColor = "#787b7a";
 	project.activeLayer.clipped = true;
 	view.draw();
 	
@@ -18,7 +18,7 @@ window.onload = function() {
 	})
 	socket.on('image', function(data) {
 		raster = new Raster(data.image);
-		//raster.position = view.center;
+		raster.position = view.center;
 		//view.draw();
 	})
 	
@@ -136,7 +136,7 @@ window.onload = function() {
 		view.draw();
 	})
 	socket.on('clear', function() {
-		var bg = new Path.Rectangle(view.bounds);
+		var bg = new Path.Rectangle(viewRect);
 		bg.fillColor = "#787b7a";
 	})
 }
