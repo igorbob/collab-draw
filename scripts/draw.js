@@ -63,7 +63,7 @@ window.onload = function() {
 	}
 
 	function saveImage(event) {
-		var subRect = new Rectangle(110,120,320,240)
+		var subRect = new Rectangle(160,120,320,240);
 		var fullRaster = project.activeLayer.rasterize();
 		var img = fullRaster.getSubRaster(subRect).toDataURL();
 		$.ajax({
