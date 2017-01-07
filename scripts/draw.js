@@ -7,9 +7,11 @@ window.onload = function() {
 
 	var maskRect = new Rectangle(-55,-60,430,360);
 	var mask = new Path.Rectangle(maskRect);
+	mask.position = view.center;
 	var bgRect = new Rectangle(-320,-240,640,480);
 	var bg = new Path.Rectangle(bgRect);
 	bg.fillColor = "#787b7a";
+	bg.position = view.center;
 	project.activeLayer.clipped = true;
 	view.draw();
 	
