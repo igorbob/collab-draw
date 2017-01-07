@@ -13,7 +13,7 @@ window.onload = function() {
 	bg.fillColor = "#787b7a";
 	bg.position = view.center;
 	project.activeLayer.clipped = true;
-	view.draw();
+	//view.draw();
 	
 	socket.on('imageRequest', function() {
 		var img = project.activeLayer.rasterize().toDataURL();
@@ -63,7 +63,9 @@ window.onload = function() {
 	}
 
 	function saveImage(event) {
-		var img = project.activeLayer.rasterize().toDataURL();
+		var subRect = new Rectangle(110,120,360,240)
+		var fullRaster = project.activeLayer.rasterize();
+		var img = fullRaster.getSubRaster(subRect).toDataURL();
 		$.ajax({
 		    type: "POST",
 		    url: "https://mirapaxi.000webhostapp.com/upload.php",
