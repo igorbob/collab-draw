@@ -13,7 +13,7 @@ window.onload = function() {
 	bg.fillColor = "#787b7a";
 	bg.position = view.center;
 	project.activeLayer.clipped = true;
-	//view.draw();
+	view.draw();
 	
 	socket.on('imageRequest', function() {
 		var img = project.activeLayer.rasterize().toDataURL();
@@ -63,7 +63,7 @@ window.onload = function() {
 	}
 
 	function saveImage(event) {
-		var subRect = new Rectangle(110,120,360,240)
+		var subRect = new Rectangle(110,120,320,240)
 		var fullRaster = project.activeLayer.rasterize();
 		var img = fullRaster.getSubRaster(subRect).toDataURL();
 		$.ajax({
@@ -140,7 +140,8 @@ window.onload = function() {
 		view.draw();
 	})
 	socket.on('clear', function() {
-		var bg = new Path.Rectangle(viewRect);
+		var bg = new Path.Rectangle(bgRect);
 		bg.fillColor = "#787b7a";
+		bg.position = view.center;
 	})
 }
