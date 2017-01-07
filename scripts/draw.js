@@ -5,11 +5,11 @@ window.onload = function() {
 	var tool = new Tool();
 	var paths = {};
 
-	var viewRect = new Rectangle(0,0,320,240);
-	var mask = new Path.Rectangle(viewRect);
-	//var bg = new Path.Rectangle(viewRect);
-	//bg.fillColor = "#787b7a";
-	project.activeLayer.strokeBounds = viewRect;
+	var maskRect = new Rectangle(-55,-60,430,360);
+	var mask = new Path.Rectangle(maskRect);
+	var bgRect = new Rectangle(-320,-240,640,480);
+	var bg = new Path.Rectangle(bgRect);
+	bg.fillColor = "#787b7a";
 	project.activeLayer.clipped = true;
 	view.draw();
 	
@@ -20,7 +20,6 @@ window.onload = function() {
 	socket.on('image', function(data) {
 		raster = new Raster(data.image);
 		raster.position = view.center;
-		//view.draw();
 	})
 	
     project.currentStyle.strokeCap = 'round';
