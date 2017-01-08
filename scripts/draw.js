@@ -68,7 +68,7 @@ window.onload = function() {
 		var img = fullRaster.getSubRaster(subRect).toDataURL();
 		$.ajax({
 		    type: "POST",
-		    url: "https://mirapaxi.000webhostapp.com/upload.php",
+		    url: "https://mirapaxi.000webhostapp.com/igordraw/upload.php",
 		    data: {image: img}
 		}).done(function( respond ) {
 		    console.log(respond);
