@@ -16,7 +16,7 @@ window.onload = function() {
 	view.draw();
 	
 	socket.on('imageRequest', function() {
-		var img = project.activeLayer.rasterize().toDataURL();
+		var img = project.activeLayer.rasterize(72).toDataURL();
 		socket.emit('imageReady', {image: img});
 	})
 	socket.on('image', function(data) {
@@ -64,7 +64,7 @@ window.onload = function() {
 
 	function saveImage(event) {
 		var subRect = new Rectangle(160,120,320,240);
-		var fullRaster = project.activeLayer.rasterize();
+		var fullRaster = project.activeLayer.rasterize(72);
 		var img = fullRaster.getSubRaster(subRect).toDataURL();
 		$.ajax({
 		    type: "POST",
