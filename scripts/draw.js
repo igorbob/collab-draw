@@ -16,10 +16,9 @@ window.onload = function() {
 	view.draw();
 	
 	socket.on('imageRequest', function() {
-		scale = view.resolution / 72
-		project.activeLayer.scale(1 / scale);
-		var img = project.activeLayer.rasterize().toDataURL();
-		project.activeLayer.scale(scale);
+		scale = 1 / (view.resolution / 72)
+		var img = project.activeLayer.rasterize(view.resolution, false);
+		img = img.scale(scale).rasterize(view.resolution,false).toDataURL();
 		socket.emit('imageReady', {image: img});
 	})
 	socket.on('image', function(data) {
@@ -67,10 +66,9 @@ window.onload = function() {
 
 	function saveImage(event) {
 		var subRect = new Rectangle(160,120,320,240);
+		scale = 1 / ( view.resolution / 72 );
 		var fullRaster = project.activeLayer.rasterize(view.resolution, false);
-		scale = view.resolution / 72
-		
-		fullRaster = fullRaster.scale(1 / scale).rasterize(view.resolution, false);
+		fullRaster = fullRaster.scale(scale).rasterize(view.resolution, false);
 		var img = fullRaster.getSubRaster(subRect).toDataURL();
 		$.ajax({
 		    type: "POST",
