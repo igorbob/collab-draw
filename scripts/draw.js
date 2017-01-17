@@ -16,8 +16,6 @@ window.onload = function() {
 	view.draw();
 	
 	socket.on('imageRequest', function() {
-		console.log('view.resolution', view.resolution);
-		console.log('view.size', view.size);
 		scale = view.resolution / 72
 		project.activeLayer.scale(1 / scale);
 		var img = project.activeLayer.rasterize().toDataURL();
@@ -69,8 +67,11 @@ window.onload = function() {
 
 	function saveImage(event) {
 		var subRect = new Rectangle(160,120,320,240);
+		scale = view.resolution / 72
+		project.activeLayer.scale(1 / scale);
 		var fullRaster = project.activeLayer.rasterize();
 		var img = fullRaster.getSubRaster(subRect).toDataURL();
+		project.activeLayer.scale(1 / scale);
 		$.ajax({
 		    type: "POST",
 		    url: "https://mirapaxi.000webhostapp.com/igordraw/upload.php",
