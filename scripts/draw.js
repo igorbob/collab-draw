@@ -16,7 +16,12 @@ window.onload = function() {
 	view.draw();
 	
 	socket.on('imageRequest', function() {
+		console.log('view.resolution', view.resolution);
+		console.log('view.size', view.size);
+		scale = view.resolution / 72
+		project.activeLayer.scale(1 / scale);
 		var img = project.activeLayer.rasterize().toDataURL();
+		project.activeLayer.scale(scale);
 		socket.emit('imageReady', {image: img});
 	})
 	socket.on('image', function(data) {
