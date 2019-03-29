@@ -9,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.0",
-    "socket.io": "^1.7.2",
-    "paper": "^0.10.2"
+    "express": "^4.16.4",
+    "paper": "^0.10.3",
+    "socket.io": "^1.7.4"
   }
 }
